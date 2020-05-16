@@ -14,6 +14,6 @@ class HelloController extends Controller
 {
     public function actionIndex()
     {
-        return "Hello World";
+        return $this->render('index');
     }
 }
