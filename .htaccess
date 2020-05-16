@@ -1,0 +1,22 @@
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+#redirect to /backend/web/
+RewriteCond %{REQUEST_URI} ^/studio
+RewriteRule ^studio\/?(.*) /backend/web/$1
+
+#redirect to /frontend/web/
+RewriteCond %{REQUEST_URI} !^/(frontend/web|backend/web|studio)
+RewriteRule (.*) /frontend/web/$1
+
+# frontend
+RewriteCond %{REQUEST_URI} ^/frontend/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /frontend/web/index.php
+
+# backend
+RewriteCond %{REQUEST_URI} ^/backend/web
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /backend/web/index.php
